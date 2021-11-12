@@ -19,7 +19,7 @@ using System.IO;
 
 
 
-namespace Lab_2_5_1
+namespace Lab_2_7_1
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -40,80 +40,12 @@ namespace Lab_2_5_1
             mcolor.green = 0;
             mcolor.blue = 0;
             this.lbl1.Background = new SolidColorBrush(Color.FromRgb(mcolor.red, mcolor.green, mcolor.blue));
-
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Properties.Settings.Default.Position = this.RestoreBounds;
             Properties.Settings.Default.Save();
         }
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Не получилось у меня открывать и сохранять изображения что то все так запутанно и в инете тоже, я так понимаю надо не InkCanvas использовать? Думаю дальше по ходу учения мы изучим более простые методы?", "Сообщение", MessageBoxButton.OK);
-
-
-            //this.Jpg.EditingMode = InkCanvasEditingMode.None;
-            //string imgPath = @"c:\\Data\file.jpg"; //Куда сохраняется файл
-            //MemoryStream ms = new MemoryStream();  //Поток памяти :)
-            //FileStream fs = new FileStream(imgPath, FileMode.Create); //  Поток файла :)
-
-            ////rtb - объект класса RenderTargetBitmap
-            //RenderTargetBitmap rtb = new RenderTargetBitmap((int)Jpg.Width, (int)Jpg.Height, 96, 96, PixelFormats.Default);
-            //rtb.Render(Jpg);
-
-            //GifBitmapEncoder JpgEnc = new GifBitmapEncoder(); //сохраняем в формате GIF
-            //JpgEnc.Frames.Add(BitmapFrame.Create(rtb));
-            //JpgEnc.Save(fs);
-            //fs.Close();
-            //this.Jpg.EditingMode = InkCanvasEditingMode.Ink;
-            //MessageBox.Show("Файл сохранен, " + imgPath); //Для информации
-
-
-            //OpenFileDialog open_dialog = new OpenFileDialog(); //создание диалогового окна для выбора файла
-            //open_dialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*"; //формат загружаемого файла
-            //if (open_dialog.ShowDialog() == true) //если в окне была нажата кнопка 
-            //{
-            //    Jpg.Image = File.ReadAllText(openFileDialog.FileName);
-
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Только рисунок (*.jpg)|*.jpg";
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    
-            //}
-        }
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Не получилось у меня открывать и сохранять изображения что то все так запутанно и в инете тоже, я так понимаю надо не InkCanvas использовать? Думаю дальше по ходу учения мы изучим более простые методы?", "Сообщение", MessageBoxButton.OK);
-
-            //string imgPath = @"C:\Temp\file.gif"; //Куда сохраняется файл
-            //MemoryStream ms = new MemoryStream();  //Поток памяти :)
-            //FileStream fs = new FileStream(imgPath, FileMode.Create); //  Поток файла :)
-
-            ////rtb - объект класса RenderTargetBitmap
-            //RenderTargetBitmap rtb = new RenderTargetBitmap((int)Jpg.Width, (int)Jpg.Height, 96, 96, PixelFormats.Default);
-            //rtb.Render(Jpg);
-
-            //GifBitmapEncoder gifEnc = new GifBitmapEncoder(); //сохраняем в формате GIF
-            //gifEnc.Frames.Add(BitmapFrame.Create(rtb));
-            //gifEnc.Save(fs);
-            //fs.Close();
-
-            //MessageBox.Show("Файл сохранен, " + imgPath); //Для информации
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "Только рисунок (*.jpg)|*.jpg";
-            //if (saveFileDialog.ShowDialog() == true)
-            //{
-            //    File.Open(saveFileDialog.FileName, );
-            //    Jpg.Save(savedialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-            //    Jpg.Image.Save("Только рисунок (*.jpg)|*.jpg");
-            //}
-        }
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Jpg.EditingMode = InkCanvasEditingMode.Ink;
@@ -138,32 +70,6 @@ namespace Lab_2_5_1
         {
             this.Jpg.EditingMode = InkCanvasEditingMode.EraseByStroke;
         }
-
-        //private void RadioButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.Jpg.DefaultDrawingAttributes.Color = Colors.Black;
-
-        //}
-
-        //private void RadioButton_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    this.Jpg.DefaultDrawingAttributes.Color = Colors.Red;
-        //}
-
-        //private void RadioButton_Click_2(object sender, RoutedEventArgs e)
-        //{
-        //    this.Jpg.DefaultDrawingAttributes.Color = Colors.Green;
-        //}
-
-        //private void RadioButton_Click_3(object sender, RoutedEventArgs e)
-        //{
-        //    this.Jpg.DefaultDrawingAttributes.Color = Colors.Yellow;
-        //}
-
-        //private void RadioButton_Click_4(object sender, RoutedEventArgs e)
-        //{
-        //    this.Jpg.DefaultDrawingAttributes.Color = Colors.Blue;
-        //}
         public class ColorRGB
         {
             public byte red { get; set; }
@@ -196,6 +102,44 @@ namespace Lab_2_5_1
             this.lbl1.Background = new SolidColorBrush(Color.FromRgb(mcolor.red, mcolor.green, mcolor.blue));
             // Задаем цвет кисти для контрола InkCanvas
             this.Jpg.DefaultDrawingAttributes.Color = clr;
+        }
+        private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Imege (.jpg)|*.jpg";
+            if (dlg.ShowDialog() == true)
+            {
+                string falename = dlg.Filter;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(falename);
+                bitmap.EndInit();
+                jpg.Source = bitmap;
+            }
+        }
+        private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Imege (.jpg)|*.jpg";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                int margin = (int)this.Jpg.Margin.Left;
+                int width = (int)this.Jpg.ActualWidth - margin;
+                int height = (int)this.Jpg.ActualHeight - margin;
+                RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
+                rtb.Render(Jpg);
+                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                {
+                    BmpBitmapEncoder encoder = new BmpBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(rtb));
+                    encoder.Save(fs);
+                }
+            }
+        }
+        private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

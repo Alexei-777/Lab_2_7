@@ -17,7 +17,7 @@ using System.IO;
 
 
 
-namespace Lab_2_5
+namespace Lab_2_7
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -32,7 +32,7 @@ namespace Lab_2_5
             this.Height = Properties.Settings.Default.Position.Height;
             this.Width = Properties.Settings.Default.Position.Width;
         }
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Только текстовые файлы (*.txt)|*.txt";
@@ -41,7 +41,7 @@ namespace Lab_2_5
                 textBox.Text = File.ReadAllText(openFileDialog.FileName);
             }
         }
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Только текстовые файлы (*.txt)|*.txt";
@@ -50,7 +50,7 @@ namespace Lab_2_5
                 File.WriteAllText(saveFileDialog.FileName, textBox.Text);
             }
         }
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
